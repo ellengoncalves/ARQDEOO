@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="695a13ac-f563-4a16-85d4-0b17fc4f8908" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/aula01/revisao/exemplo_dispositivo/src/application/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aula01/revisao/exemplo_dispositivo/src/entities/Dispositivo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aula01/revisao/exemplo_dispositivo/src/entities/GerenciaDispositivo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aula01/revisao/exemplo_dispositivo/src/entities/JanelaUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aula01/revisao/exemplo_dispositivo/src/entities/Notebook.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aula01/revisao/exemplo_dispositivo/src/entities/SituacaoDispositivo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aula01/revisao/exemplo_dispositivo/src/entities/Smartphone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aula01/revisao/exemplo_dispositivo/src/entities/TV.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3A5am6ZCIa7NhYE37g5uDTEP5Ne" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ellen/ARQDEOO/aula01/revisao/exemplo_dispositivo&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/ellen/ARQDEOO/untitled/src/Main.java&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ellen\ARQDEOO\aula01\revisao\exemplo_dispositivo" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ellen\ARQDEOO\aula01\revisao" />
+      <recent name="C:\Users\ellen\ARQDEOO\aula01" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Run" type="Application" factoryName="Application">
+      <module name="ARQDEOO" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="695a13ac-f563-4a16-85d4-0b17fc4f8908" name="Changes" comment="" />
+      <created>1771885041841</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771885041841</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/aula01/revisao/exemplo_dispositivo/src/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/aula01/revisao/src/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/untitled/src/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
