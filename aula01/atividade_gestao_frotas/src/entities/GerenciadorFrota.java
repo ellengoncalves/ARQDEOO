@@ -25,4 +25,11 @@ public class GerenciadorFrota {
         // Retorna uma cópia para manter o encapsulamento
         return new ArrayList<>(frota);
     }
+
+    public Veiculo removerVeiculo(int index) {
+        if (index >= 0 && index < frota.size()) {
+            return frota.remove(index);
+        }
+        return null;
+    }
 }
