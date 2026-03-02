@@ -6,7 +6,6 @@ public class Motocicleta implements Veiculo {
     @Override
     public void ligar() {
         if (!ligado) {
-            // Simula partida elétrica
             ligado = true;
         }
     }

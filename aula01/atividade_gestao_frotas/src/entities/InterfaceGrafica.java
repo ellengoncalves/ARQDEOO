@@ -28,7 +28,6 @@ public class InterfaceGrafica extends JFrame {
         scroll.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(200,200,200)), new EmptyBorder(6,6,6,6)));
         scroll.setPreferredSize(new Dimension(480, 260));
 
-        // Painel superior com seleção e botão de adicionar
         JPanel painelSuperior = new JPanel(new BorderLayout(8, 8));
         painelSuperior.setBorder(new EmptyBorder(10, 10, 0, 10));
         painelSuperior.setOpaque(false);
@@ -60,7 +59,6 @@ public class InterfaceGrafica extends JFrame {
         painelSuperior.add(painelSelecao, BorderLayout.WEST);
         painelSuperior.add(painelAdicionar, BorderLayout.EAST);
 
-        // Painel de ações
         JPanel painelAcoes = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 6));
         painelAcoes.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(220,220,220)), "Ações"));
         painelAcoes.setBackground(new Color(250,250,250));

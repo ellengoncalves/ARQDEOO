@@ -22,7 +22,6 @@ public class GerenciadorFrota {
     }
 
     public List<Veiculo> getFrota() {
-        // Retorna uma cópia para manter o encapsulamento
         return new ArrayList<>(frota);
     }
 

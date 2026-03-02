@@ -6,7 +6,6 @@ public class Caminhao implements Veiculo {
     @Override
     public void ligar() {
         if (!ligado) {
-            // Simula pré-aquecimento
             ligado = true;
         }
     }
