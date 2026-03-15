@@ -6,14 +6,14 @@ import java.awt.*;
 public class JanelaGrafica extends JFrame {
     public JanelaGrafica() {
         setTitle("Relatório de Ingressos");
-        setSize(500, 400);
+        setSize(500, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
 
         // Painel principal
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(new Color(245, 245, 245)); // White Smoke
+        mainPanel.setBackground(new Color(244, 247, 198)); // White Smoke
 
         // Título
         JLabel titleLabel = new JLabel("Relatório de Ingressos Vendidos", JLabel.CENTER);
@@ -26,7 +26,7 @@ public class JanelaGrafica extends JFrame {
         JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
         textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
-        textArea.setBackground(new Color(255, 255, 255));
+        textArea.setBackground(new Color(244, 247, 198));
         textArea.setText("O relatório foi gerado no console.\nVerifique a saída do programa para os detalhes.");
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setBorder(BorderFactory.createTitledBorder("Detalhes do Relatório"));

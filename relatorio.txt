@@ -1,0 +1,12 @@
+Relatório de Ingressos Vendidos
+================================
+Ingresso{numero=1, setor='Verde', valor=125.0, dataHoraCompra=15/03/2026 14:37:17}
+Ingresso{numero=2, setor='Verde', valor=125.0, dataHoraCompra=15/03/2026 14:37:17}
+Ingresso{numero=3, setor='Verde', valor=125.0, dataHoraCompra=15/03/2026 14:37:17}
+Ingresso{numero=4, setor='Verde', valor=125.0, dataHoraCompra=15/03/2026 14:37:17}
+Ingresso{numero=5, setor='Verde', valor=125.0, dataHoraCompra=15/03/2026 14:37:17}
+Ingresso{numero=6, setor='Verde', valor=125.0, dataHoraCompra=15/03/2026 14:37:17}
+Ingresso{numero=7, setor='Verde', valor=125.0, dataHoraCompra=15/03/2026 14:37:17}
+Ingresso{numero=8, setor='Verde', valor=125.0, dataHoraCompra=15/03/2026 14:37:17}
+Ingresso{numero=9, setor='Verde', valor=125.0, dataHoraCompra=15/03/2026 14:37:17}
+Ingresso{numero=10, setor='Verde', valor=125.0, dataHoraCompra=15/03/2026 14:37:17}
