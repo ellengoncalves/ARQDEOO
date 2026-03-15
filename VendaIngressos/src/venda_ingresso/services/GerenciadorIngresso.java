@@ -1,16 +1,16 @@
-package VendaIngressos.src.services;
-
-import VendaIngressos.src.entities.Ingresso;
-import VendaIngressos.src.enums.SetorEnum;
-import VendaIngressos.src.exceptions.SetorEsgotadoException;
+package venda_ingresso.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import venda_ingresso.entities.Ingresso;
+import venda_ingresso.enums.SetorEnum;
+import venda_ingresso.exceptions.SetorEsgotadoException;
 
 public class GerenciadorIngresso {
     private static final int LIMITE_POR_SETOR = 10;
+
     private int prox = 1;
     private List<Ingresso> ingressos;
     private Map<String, Integer> contadorPorSetor;
@@ -24,24 +24,26 @@ public class GerenciadorIngresso {
     }
 
     public boolean comprarIngresso(String setor, int quantidade) {
-        if (quantidade <= 0) {
-            throw new VendaIngressos.src.exceptions.QuantidadeInvalidaException("Quantidade deve ser maior que zero.");
-        }
-
-        int atual = contadorPorSetor.get(setor);
-        if (atual + quantidade > LIMITE_POR_SETOR) {
+        int vendidosNoSetor = contadorPorSetor.getOrDefault(setor, 0);
+        if (vendidosNoSetor + quantidade > LIMITE_POR_SETOR) {
             throw new SetorEsgotadoException("Limite de ingressos para o setor " + setor + " atingido.");
         }
 
-        for (int i = 0; i < quantidade; i++) {
-            Ingresso ingresso = new Ingresso(prox++, setor, getValorSetor(setor));
-            ingressos.add(ingresso);
-            contadorPorSetor.put(setor, contadorPorSetor.get(setor) + 1);
-        }
+        Ingresso ingresso = new Ingresso(prox++, setor, getValorSetor(setor), quantidade);
+        ingressos.add(ingresso);
+        contadorPorSetor.put(setor, vendidosNoSetor + quantidade);
         return true;
     }
 
-    private double getValorSetor(String setorNome) {
+    public List<String> getSetoresDisponiveis() {
+        List<String> setores = new ArrayList<>();
+        for (SetorEnum setor : SetorEnum.values()) {
+            setores.add(setor.getNome());
+        }
+        return setores;
+    }
+
+    public double getValorSetor(String setorNome) {
         for (SetorEnum setor : SetorEnum.values()) {
             if (setor.getNome().equals(setorNome)) {
                 return setor.getValor();
@@ -55,14 +57,14 @@ public class GerenciadorIngresso {
     }
 
     public void setIngressos(List<Ingresso> ingressos) {
-        this.ingressos = ingressos;
-        // Recalcular contadores
+        this.ingressos = ingressos == null ? new ArrayList<>() : new ArrayList<>(ingressos);
         contadorPorSetor.clear();
         for (SetorEnum setor : SetorEnum.values()) {
             contadorPorSetor.put(setor.getNome(), 0);
         }
-        for (Ingresso ingresso : ingressos) {
-            contadorPorSetor.put(ingresso.getSetor(), contadorPorSetor.get(ingresso.getSetor()) + 1);
+        for (Ingresso ingresso : this.ingressos) {
+            int atual = contadorPorSetor.getOrDefault(ingresso.getSetor(), 0);
+            contadorPorSetor.put(ingresso.getSetor(), atual + ingresso.getQuantidade());
         }
     }
 
@@ -71,7 +73,8 @@ public class GerenciadorIngresso {
             System.out.println("Nenhum ingresso vendido.");
             return;
         }
-        System.out.println("Relatório de Ingressos Vendidos:");
+
+        System.out.println("Relatorio de Ingressos Vendidos:");
         for (Ingresso ingresso : ingressos) {
             System.out.println(ingresso);
         }

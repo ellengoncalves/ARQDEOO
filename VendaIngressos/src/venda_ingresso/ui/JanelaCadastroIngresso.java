@@ -1,19 +1,33 @@
-package VendaIngressos.src.ui;
+package venda_ingresso.ui;
 
-import VendaIngressos.src.services.GerenciadorIngresso;
-import VendaIngressos.src.services.GerenciadorArquivo;
-import VendaIngressos.src.enums.SetorEnum;
-import VendaIngressos.src.exceptions.QuantidadeInvalidaException;
-import VendaIngressos.src.exceptions.SetorEsgotadoException;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import venda_ingresso.exceptions.QuantidadeInvalidaException;
+import venda_ingresso.exceptions.SetorEsgotadoException;
+import venda_ingresso.services.GerenciadorArquivo;
+import venda_ingresso.services.GerenciadorIngresso;
 
 public class JanelaCadastroIngresso extends JFrame {
     private GerenciadorIngresso gerenciador;
@@ -30,18 +44,15 @@ public class JanelaCadastroIngresso extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // Painel principal
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(new Color(244, 247, 198)); // Floral White
+        mainPanel.setBackground(new Color(244, 247, 198));
 
-        // Título
         JLabel titleLabel = new JLabel("Cadastro de Ingresso", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titleLabel.setForeground(new Color(0, 0, 0));
+        titleLabel.setForeground(Color.BLACK);
         titleLabel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // Painel de formulário
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBackground(new Color(244, 247, 198));
         formPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
@@ -49,37 +60,33 @@ public class JanelaCadastroIngresso extends JFrame {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.anchor = GridBagConstraints.WEST;
 
-        gbc.gridx = 0; gbc.gridy = 0;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         JLabel lblSetor = new JLabel("Setor:");
         lblSetor.setFont(new Font("Arial", Font.BOLD, 16));
         formPanel.add(lblSetor, gbc);
+
         cbxSetores = new JComboBox<>();
-        for (SetorEnum setor : SetorEnum.values()) {
-            cbxSetores.addItem(setor.getNome());
+        List<String> setores = gerenciador.getSetoresDisponiveis();
+        for (String setor : setores) {
+            cbxSetores.addItem(setor);
         }
-        cbxSetores.setPreferredSize(new Dimension(150, 30));
+        cbxSetores.setPreferredSize(new Dimension(170, 30));
         cbxSetores.setFont(new Font("Arial", Font.PLAIN, 14));
-        cbxSetores.setBackground(new Color(134, 138, 81));
+        cbxSetores.setBackground(new Color(255, 233, 163));
         cbxSetores.setForeground(Color.BLACK);
-        cbxSetores.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    atualizarPreco();
-                }
+        cbxSetores.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                atualizarPreco();
             }
         });
-        // Campo fechado fica branco; na lista aberta, item sob foco ganha destaque.
         cbxSetores.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (index == -1) {
-                    setBackground(new Color(134, 138, 81));
-                    setForeground(Color.WHITE);
-                } else if (isSelected) {
-                    setBackground(new Color(134, 138, 81));
-                    setForeground(Color.WHITE);
+                if (index == -1 || isSelected) {
+                    setBackground(new Color(255, 233, 163));
+                    setForeground(Color.BLACK);
                 } else {
                     setBackground(Color.WHITE);
                     setForeground(Color.BLACK);
@@ -90,17 +97,19 @@ public class JanelaCadastroIngresso extends JFrame {
         gbc.gridx = 1;
         formPanel.add(cbxSetores, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
         JLabel lblQuantidade = new JLabel("Quantidade:");
         lblQuantidade.setFont(new Font("Arial", Font.BOLD, 16));
         formPanel.add(lblQuantidade, gbc);
-        // Painel para quantidade com botões
+
         JPanel qtyPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
         qtyPanel.setBackground(new Color(244, 247, 198));
+
         JButton btnMinus = new JButton("-");
         btnMinus.setFont(new Font("Arial", Font.BOLD, 16));
         btnMinus.setPreferredSize(new Dimension(40, 25));
-        btnMinus.setBackground(new Color(255, 71, 71)); // Crimson
+        btnMinus.setBackground(new Color(255, 71, 71));
         btnMinus.setForeground(Color.WHITE);
         btnMinus.setFocusPainted(false);
         btnMinus.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -125,7 +134,7 @@ public class JanelaCadastroIngresso extends JFrame {
         JButton btnPlus = new JButton("+");
         btnPlus.setFont(new Font("Arial", Font.BOLD, 16));
         btnPlus.setPreferredSize(new Dimension(40, 25));
-        btnPlus.setBackground(new Color(79, 196, 106)); // Forest Green
+        btnPlus.setBackground(new Color(79, 196, 106));
         btnPlus.setForeground(Color.WHITE);
         btnPlus.setFocusPainted(false);
         btnPlus.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -139,19 +148,20 @@ public class JanelaCadastroIngresso extends JFrame {
         gbc.gridx = 1;
         formPanel.add(qtyPanel, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 2;
-        JLabel lblPrecoUnitario = new JLabel("Preço Unitário:");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        JLabel lblPrecoUnitario = new JLabel("Preco Unitario:");
         lblPrecoUnitario.setFont(new Font("Arial", Font.BOLD, 16));
         formPanel.add(lblPrecoUnitario, gbc);
-        lblPreco = new JLabel("R$ 0.00");
+
+        lblPreco = new JLabel("R$ 0,00");
         lblPreco.setFont(new Font("Arial", Font.BOLD, 16));
-        lblPreco.setForeground(new Color(34, 139, 34)); // Forest Green
+        lblPreco.setForeground(new Color(34, 139, 34));
         gbc.gridx = 1;
         formPanel.add(lblPreco, gbc);
 
         mainPanel.add(formPanel, BorderLayout.CENTER);
 
-        // Painel de botões
         JPanel buttonPanel = new JPanel(new FlowLayout());
         buttonPanel.setBackground(new Color(244, 247, 198));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -159,31 +169,15 @@ public class JanelaCadastroIngresso extends JFrame {
         JButton btnSalvar = createStyledButton("Salvar");
         JButton btnVoltar = createStyledButton("Voltar");
 
-        btnSalvar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                comprarIngresso();
-            }
-        });
-
-        btnVoltar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                fecharJanela();
-            }
-        });
+        btnSalvar.addActionListener(e -> comprarIngresso());
+        btnVoltar.addActionListener(e -> fecharJanela());
 
         buttonPanel.add(btnSalvar);
         buttonPanel.add(btnVoltar);
-
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         add(mainPanel);
-
-        // Atualizar preço inicial
         atualizarPreco();
-
-        // Adicionar listener para fechar janela
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -196,15 +190,11 @@ public class JanelaCadastroIngresso extends JFrame {
 
     private void atualizarPreco() {
         String setorSelecionado = (String) cbxSetores.getSelectedItem();
-        for (SetorEnum setor : SetorEnum.values()) {
-            if (setor.getNome().equals(setorSelecionado)) {
-                lblPreco.setText("R$ " + String.format("%.2f", setor.getValor()).replace(".", ","));
-                break;
-            }
-        }
+        double valor = gerenciador.getValorSetor(setorSelecionado);
+        lblPreco.setText("R$ " + String.format("%.2f", valor).replace('.', ','));
     }
 
-    private void comprarIngresso() {
+     private void comprarIngresso() {
         String setor = (String) cbxSetores.getSelectedItem();
         String qtdeStr = lblQtde.getText().trim();
 
@@ -223,7 +213,6 @@ public class JanelaCadastroIngresso extends JFrame {
     }
 
     private void fecharJanela() {
-        // Serializar antes de fechar
         GerenciadorArquivo.serializar(gerenciador.getIngressos(), "ingressos.ser");
         dispose();
     }
@@ -236,7 +225,7 @@ public class JanelaCadastroIngresso extends JFrame {
         button.setFocusPainted(false);
         button.setBorder(BorderFactory.createRaisedBevelBorder());
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        button.setPreferredSize(new Dimension(120, 40)); // Maior tamanho
+        button.setPreferredSize(new Dimension(120, 40));
         return button;
     }
 }

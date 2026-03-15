@@ -1,38 +1,43 @@
-package VendaIngressos.src.ui;
+package venda_ingresso.ui;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class JanelaGrafica extends JFrame {
     public JanelaGrafica() {
-        setTitle("Relatório de Ingressos");
+        setTitle("Relatorio de Ingressos");
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // Painel principal
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(new Color(244, 247, 198)); // White Smoke
+        mainPanel.setBackground(new Color(244, 247, 198));
 
-        // Título
-        JLabel titleLabel = new JLabel("Relatório de Ingressos Vendidos", JLabel.CENTER);
+        JLabel titleLabel = new JLabel("Relatorio de Ingressos Vendidos", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
         titleLabel.setForeground(new Color(25, 25, 112));
         titleLabel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // Área de texto para relatório
         JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
         textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
         textArea.setBackground(new Color(244, 247, 198));
-        textArea.setText("O relatório foi gerado no console.\nVerifique a saída do programa para os detalhes.");
+        textArea.setText("O relatorio foi gerado no console.\nVerifique a saida do programa para os detalhes.");
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setBorder(BorderFactory.createTitledBorder("Detalhes do Relatório"));
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Detalhes do Relatorio"));
         mainPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Botão fechar
         JPanel buttonPanel = new JPanel(new FlowLayout());
         buttonPanel.setBackground(new Color(245, 245, 245));
         JButton btnFechar = new JButton("Fechar");
@@ -41,7 +46,6 @@ public class JanelaGrafica extends JFrame {
         btnFechar.setForeground(Color.WHITE);
         btnFechar.setFocusPainted(false);
         btnFechar.setBorder(BorderFactory.createRaisedBevelBorder());
-        btnFechar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnFechar.addActionListener(e -> dispose());
         buttonPanel.add(btnFechar);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);

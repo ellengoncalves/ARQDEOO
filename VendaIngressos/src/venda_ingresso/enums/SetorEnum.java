@@ -1,4 +1,4 @@
-package VendaIngressos.src.enums;
+package venda_ingresso.enums;
 
 public enum SetorEnum {
     AMARELO("Amarelo", 50.0),
@@ -20,10 +20,5 @@ public enum SetorEnum {
 
     public double getValor() {
         return valor;
-    }
-
-    @Override
-    public String toString() {
-        return nome;
     }
 }
